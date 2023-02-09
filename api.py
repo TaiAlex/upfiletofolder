@@ -36,7 +36,9 @@ async def upload_file(files: List[UploadFile] = File(...)):
     dir_path = "upload/" + str_time.str_yyyy_mm_dd(time)
     str_time.create_path("upload")
     str_time.create_path(dir_path)
-    file_path = dir_path + "/" + f'{file_name}.wav'
+    type = file.filename.split(".")[1]
+    file_path = dir_path + "/" + f'{file_name}.{type}'
+    # file_path = dir_path + "/" + f'{file_name}.wav'
     file_bytes = file_in_list.file.read()
     print(file_bytes)
     str_time.upload_file_bytes(file_bytes, file_path)
